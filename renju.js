@@ -1,6 +1,10 @@
 const fs = require("fs");
 const { exit } = require("process");
 
+const MIN_TEST_CASES = 1;
+const MAX_TEST_CASES = 11;
+const BOARD_SIZE = 19;
+
 clearResultsFile();
 let testData = readTestFile();
 const dataArray = getFormatedArray(testData);
@@ -22,7 +26,8 @@ function readTestFile() {
 
 function getFormatedArray(testData) {
   const testCases = testData[0];
-  if (testCases < 1 || testCases > 11) exit();
+
+  if (testCases < MIN_TEST_CASES || testCases > MAX_TEST_CASES) exit();
 
   testData = testData.slice(2, testData.length);
 
@@ -33,11 +38,11 @@ function getFormatedArray(testData) {
   let dataArray = [];
   for (let i = 0; i < testCases; i++) {
     const singleSet = [];
-    for (let j = i * 19; j < (i + 1) * 19; j++) {
+    for (let j = i * BOARD_SIZE; j < (i + 1) * BOARD_SIZE; j++) {
       singleSet.push(data[j]);
     }
-    if (data.at((i + 1) * 19)) {
-      data.splice((i + 1) * 19, 1);
+    if (data.at((i + 1) * BOARD_SIZE)) {
+      data.splice((i + 1) * BOARD_SIZE, 1);
     }
     dataArray.push(singleSet);
   }
