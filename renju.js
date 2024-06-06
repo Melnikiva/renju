@@ -56,8 +56,8 @@ function getGameResults(board) {
 
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
+      const player = board[i][j];
       if (board[i][j] !== "0") {
-        const player = board[i][j];
         for (const [dx, dy] of directions) {
           let count = 1;
           let x = i + dx;
